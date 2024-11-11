@@ -1,0 +1,87 @@
+/* Estilos gerais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Contêiner principal */
+.container-app {
+  display: flex;
+  height: 100vh; /* Faz com que ocupe a altura total da tela */
+  overflow: hidden;
+}
+
+/* Barra de navegação fixa */
+nav {
+  width: 20vw; /* 40% da largura da tela */
+  height: 100vh; /* Altura total da viewport */
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav h4 {
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+nav ul li {
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+/* Conteúdo principal */
+.home {
+  min-width: 80vw; /* O restante da tela, 60% */
+  height: 100vh;
+  overflow-y: auto; /* Rolar apenas o conteúdo principal */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.options-home{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.options-home div{
+  background-color: #33333367;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 10px;
+}
+
+.options-home div h3{
+  padding-bottom: 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+.options-home div a{
+  text-decoration: none;
+}
+
+.grafico{
+  width: 50%;
+}
