@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import {User} from './models/User.js'
+import { Product } from "./models/Product.js";
 
 dotenv.config()
 
@@ -126,4 +127,42 @@ app.post("/login", async (req, res) => {
   } catch (error) {
     res.status(500).json({message: "erro no servidor"})
   }
+})
+
+//Rota para adicionar produtos
+app.post('/adicionar', async (req, res) => {
+  const { ref, descricao, nome, categoria, cor, sizes } = req.body;
+
+  const existingProduct = await Product.findOne({ref: ref})
+  const total = sizes.reduce((total, size) => total + size.quantidade, 0)
+
+  if(existingProduct){
+    return res.status(422).json({message: "Produto já inserido no banco de dados", total: total})
+  }
+  
+  const product = new Product({
+    ref,
+    descricao,
+    nome,
+    categoria,
+    cor,
+    sizes,
+    total
+  })
+
+  try {
+    await product.save()
+    res.status(201).json({message: 'Produto cadastrado', product})
+  } catch (error) {
+    res.status(500).json({message: "Ocorreu um erro no servidor", error});
+  }
+})
+
+//Rota para listagem de produtos
+app.get('/listar', async (req, res) => {
+  let products = []
+
+  products = await Product.find()
+
+  res.status(200).json(products)  
 })

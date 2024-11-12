@@ -38,5 +38,6 @@ export const Product = mongoose.model('Product', {
       message: 'Cor é obrigatória para vestidos lisos',
     },
   },
-  sizes: [modelSize]
+  sizes: [modelSize],
+  total: Number
 })
