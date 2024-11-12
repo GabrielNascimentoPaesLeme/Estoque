@@ -29,6 +29,10 @@ nav {
   justify-content: space-between;
 }
 
+.username h1{
+  cursor: pointer;
+}
+
 nav h4 {
   margin-bottom: 20px;
 }

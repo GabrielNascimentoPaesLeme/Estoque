@@ -1,22 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Nav = () => {
 
+  const navigate = useNavigate()
 
   const usuario = localStorage.getItem("username")
 
   return (
     <div>
       <nav>
-        <div>
-          <h1>{usuario}</h1>
+        <div className='username'>
+          <h1 onClick={() => navigate('/home')}>{usuario}</h1>
         </div>
 
         <div>
           <h4>Gerenciamento</h4>
           <ul>
-            <li>Produtos</li>
+            <li onClick={() => navigate('/produtos')}>Produtos</li>
             <li>Categorias</li>
             <li>Fornecedores</li>
           </ul>

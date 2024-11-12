@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Chart from '../components/Chart';
+import { ContextPage } from '../context/PageContext';
 
 const Home = () => {
+  const {state} = useContext(ContextPage)
+  const products = state.products
+  const totalproducts = products.reduce((total, product) => total + product.total, 0)
+  
   return (
     <div className="home">
       <div>
@@ -12,31 +17,29 @@ const Home = () => {
       <div className="options-home">
         <div>
           <h3>
-            Produtos cadastrados <br /> Itens em estoque
+            {products.length} Produtos cadastrados <br/> {totalproducts} Itens em estoque
           </h3>
           <a href="/">Mais informações</a>
         </div>
 
         <div>
           <h3>
-            Produtos cadastrados <br /> Itens em estoque
+            {products.length} Produtos cadastrados <br/> {totalproducts} Itens em estoque
           </h3>
           <a href="/">Mais informações</a>
         </div>
 
         <div>
           <h3>
-            Produtos cadastrados <br /> Itens em estoque
+            {products.length} Produtos cadastrados <br/> {totalproducts} Itens em estoque
           </h3>
-
           <a href="/">Mais informações</a>
         </div>
 
         <div>
           <h3>
-            Produtos cadastrados <br /> Itens em estoque
+            {products.length} Produtos cadastrados <br/> {totalproducts} Itens em estoque
           </h3>
-
           <a href="/">Mais informações</a>
         </div>
       </div>
@@ -46,6 +49,7 @@ const Home = () => {
           <Chart />
         </div>
       </div>
+
     </div>
   );
 };

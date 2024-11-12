@@ -1,6 +1,8 @@
 import { createContext, useEffect, useReducer } from 'react';
 import api from '../services/api';
 
+let products = [];
+
 async function login(dispatch, userData) {
   try {
     const response = await api.post('/login', userData);
@@ -22,9 +24,20 @@ async function login(dispatch, userData) {
   }
 }
 
+async function listProducts(dispatch) {
+  try {
+    const response = await api.get('/listar');
+    dispatch({ type: 'SET_PRODUCTS', payload: response.data });
+    console.log(response.data)
+  } catch (error) {
+    console.error('Erro ao buscar receitas');
+  }
+}
+
 const initialState = {
   user: null,
   token: null,
+  products,
 };
 
 const pageReducer = (state, action) => {
@@ -35,6 +48,11 @@ const pageReducer = (state, action) => {
         user: action.payload,
         token: action.payload,
       };
+    case 'SET_PRODUCTS':
+      return {
+        ...state,
+        products: action.payload,
+      };
     default:
       return state;
   }
@@ -44,6 +62,11 @@ export const ContextPage = createContext();
 
 export const PageProvider = ({ children }) => {
   const [state, dispatch] = useReducer(pageReducer, initialState);
+
+  useEffect(()=> {
+    listProducts(dispatch)
+    console.log(state.products)
+  }, [])
 
   return (
     <ContextPage.Provider value={{ state, dispatch, login }}>
