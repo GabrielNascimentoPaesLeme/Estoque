@@ -1,11 +1,16 @@
 import React from 'react';
 
+
 const Nav = () => {
+
+
+  const usuario = localStorage.getItem("username")
+
   return (
     <div>
       <nav>
         <div>
-          <h1>Usuário</h1>
+          <h1>{usuario}</h1>
         </div>
 
         <div>
