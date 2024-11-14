@@ -1,23 +1,34 @@
-import React, {useContext} from 'react'
-import { ContextPage } from '../../context/PageContext'
+import React, { useContext } from 'react';
+import { ContextPage } from '../../context/PageContext';
+import { useLocation } from 'react-router-dom';
+import Pesquisa from '../../components/Pesquisa';
+import ListProducts from '../../components/ListProducts';
 
 const Produtos = () => {
-  const {state} = useContext(ContextPage)
-  const products = state.products
-  console.log(products)
-  return (
-    <div>
-      {products.map((product, index) => (
-        <div key={index}>
-          <p>Referência: {product.ref}</p>
-          <p>Categoria: {product.categoria}</p>
-          <p>Cor: {product.cor}</p>
-          <p>Desc.: {product.descricao}</p>
-          <p>Total desse item em estoque: {product.total}</p>
-        </div>
-      ))}
-    </div>
-  )
-}
+  const {search} = useLocation()
+  const { state } = useContext(ContextPage);
+  const products = state.products;
 
-export default Produtos
+  const query = new URLSearchParams(search).get("q");
+
+  const searchProduct = state.products.filter((product)=> product.ref.includes(query))
+  console.log(searchProduct)
+
+  return (
+    <div className="container-produtos margin-left">
+      <Pesquisa/>
+
+      <div className="title">
+        <p>Referência</p>
+        <p>Categoria</p>
+        <p>Descrição</p>
+        <p>Total</p>
+      </div>
+
+      <ListProducts products={ query ? searchProduct : products }/>
+
+    </div>
+  );
+};
+
+export default Produtos;

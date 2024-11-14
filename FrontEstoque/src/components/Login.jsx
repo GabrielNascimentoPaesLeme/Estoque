@@ -16,10 +16,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    /* loginSucces é a constante que vai receber true ou false. O retorno da função login depende da autenticação do usuário pelos dados setados em "userData" */
     const loginSuccess = await login(dispatch, userData);
 
-    /* Se a autenticação for bem sucedida, retorna um true e redireciona para  página principal de exibição de receitas */
+    
     if (loginSuccess) {
       navigate('/home');
     } else {

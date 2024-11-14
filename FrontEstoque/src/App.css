@@ -12,8 +12,9 @@ body {
 /* Contêiner principal */
 .container-app {
   display: flex;
-  height: 100vh; /* Faz com que ocupe a altura total da tela */
+  min-height: 100vh; /* Faz com que ocupe a altura total da tela */
   overflow: hidden;
+  
 }
 
 /* Barra de navegação fixa */
@@ -27,6 +28,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: fixed;
 }
 
 .username h1{
@@ -48,11 +50,77 @@ nav ul {
 nav ul li {
   margin-bottom: 5px;
   cursor: pointer;
-}
+} 
 
 /* Conteúdo principal */
+.margin-left{
+  margin-left: calc(100vw - 80vw);
+  width: 80vw; 
+  
+}
+
+/* Produtos */
+.title{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: brown;
+  padding: 10px 0;
+}
+
+
+.list-product{
+  display: flex;
+  justify-content: center;
+}
+
+.accordion-button:nth-child(even){
+  background-color: #333 !important;
+}
+
+.accordion-button{
+  justify-content: space-evenly;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.accordion-button::after{
+  content: none !important;
+  margin-left: 0 !important;
+  
+}
+
+table{
+  margin: 20px 0;
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.table-header{
+  text-transform: capitalize;
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+ th, td{
+  border: '1px solid #ddd';
+  padding: 8px;
+ }
+
+
+.accordion-button p, .title p{
+  width: 20%;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+
+/* Página de entrada */
 .home {
-  min-width: 80vw; /* O restante da tela, 60% */
   height: 100vh;
   overflow-y: auto; /* Rolar apenas o conteúdo principal */
   padding: 20px;
@@ -64,12 +132,13 @@ nav ul li {
 .options-home{
   display: flex;
   justify-content: space-between;
+  gap: 30px;
   text-align: center;
 }
 
 .options-home div{
   background-color: #33333367;
-  padding: 30px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;

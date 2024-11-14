@@ -8,7 +8,7 @@ const Home = () => {
   const totalproducts = products.reduce((total, product) => total + product.total, 0)
   
   return (
-    <div className="home">
+    <div className="home margin-left">
       <div>
         <h1>Página Inicial</h1>
         <h5>Visão geral do controle de estoque.</h5>

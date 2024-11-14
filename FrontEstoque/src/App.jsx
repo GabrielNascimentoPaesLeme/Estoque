@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './routes/Home';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [count, setCount] = useState(0);
