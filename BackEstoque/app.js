@@ -131,7 +131,7 @@ app.post("/login", async (req, res) => {
 
 //Rota para adicionar produtos
 app.post('/adicionar', async (req, res) => {
-  const { ref, descricao, nome, categoria, cor, sizes } = req.body;
+  const { ref, descricao, nome, categoria, sizes } = req.body;
 
   const existingProduct = await Product.findOne({ref: ref})
   const total = sizes.reduce((total, size) => total + size.quantidade, 0)
@@ -145,7 +145,6 @@ app.post('/adicionar', async (req, res) => {
     descricao,
     nome,
     categoria,
-    cor,
     sizes,
     total
   })

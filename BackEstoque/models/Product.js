@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 //Subdocumento para variar os tamanhos
 const modelSize = new mongoose.Schema({
+  cor: {
+    type: String,
+    required: true,
+    enum: ['azul', 'amarela', 'vermelha', 'branca', 'preta']
+  },
   size: {
     type: String,
     required: true,
