@@ -26,7 +26,7 @@ const Nav = () => {
         <div>
           <h4>Movimentação</h4>
           <ul>
-            <li>Entradas</li>
+            <li onClick={()=> navigate('/entradas')}>Entradas</li>
             <li>Saídas</li>
           </ul>
         </div>

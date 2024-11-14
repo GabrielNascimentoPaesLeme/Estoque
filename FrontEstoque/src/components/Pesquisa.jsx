@@ -2,13 +2,17 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
-const Pesquisa = () => {
+const Pesquisa = ({path}) => {
   const [search, setSearch] = useState('')
   const navigate= useNavigate()
 
   
   useEffect(() => {
-    navigate(`/produtos?q=${search}`);
+    if(search !== ''){
+      navigate(`/${path}?q=${search}`);
+    } else {
+      navigate(`/${path}`)
+    }
   }, [search])
 
   return (

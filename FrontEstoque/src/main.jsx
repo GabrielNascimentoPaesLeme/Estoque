@@ -12,6 +12,7 @@ import Home from './routes/Home.jsx';
 import Categorias from './routes/gerenciamento/Categorias.jsx';
 import Produtos from './routes/gerenciamento/Produtos.jsx';
 import Fornecedores from './routes/gerenciamento/Fornecedores.jsx';
+import Entradas from './routes/movimentação/Entradas.jsx';
 
 import './index.css';
 import App from './App.jsx';
@@ -42,8 +43,8 @@ const router = createBrowserRouter(
               element: <Produtos />,
             },
             {
-              path: '/fornecedores',
-              element: <Fornecedores />,
+              path: '/entradas',
+              element: <Entradas />,
             },
           ],
         },

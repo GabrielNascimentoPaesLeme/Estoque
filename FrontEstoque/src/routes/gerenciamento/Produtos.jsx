@@ -16,7 +16,7 @@ const Produtos = () => {
 
   return (
     <div className="container-produtos margin-left">
-      <Pesquisa/>
+      <Pesquisa path='produtos'/>
 
       <div className="title">
         <p>Referência</p>
