@@ -165,3 +165,31 @@ app.get('/listar', async (req, res) => {
 
   res.status(200).json(products)  
 })
+
+app.put('/editar', async (req, res) => {
+  if (Array.isArray(req.body)){
+    for (const obj of req.body) {
+      const {ref, cor, size, quantidade} = obj;
+      const existingProduct = await Product.findOne({ref: ref});
+      if (existingProduct){
+        const {sizes} = existingProduct.toObject();
+        for(const {cor: sizeColor, size: sizeValue, quantidade: sizeQuantidade} of sizes) {
+          if(obj.cor === sizeColor && obj.size === sizeValue) {
+            console.log(quantidade)
+            const updateProduct = await Product.updateOne(
+              { ref, sizes: { $elemMatch: { cor: sizeColor, size: sizeValue } } },
+              { $set: { 'sizes.$[element].quantidade': quantidade } },
+              { arrayFilters: [{ 'element.cor': sizeColor, 'element.size': sizeValue }] }
+            );
+            if (updateProduct){
+              /* console.log(`Updated product: ${JSON.stringify(updateProduct.toObject())}`); */
+              const updatedExistingProduct = await Product.findOne({ ref: ref });
+              console.log(`Quantidade atualizada: ${updatedExistingProduct.sizes.find(size => size.cor === sizeColor && size.size === sizeValue).quantidade}`);
+              console.log(quantidade)
+            }
+          }
+        }
+      }
+    }
+  }
+})
